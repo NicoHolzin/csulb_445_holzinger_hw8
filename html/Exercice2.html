@@ -4,23 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <h1>Exercice 2</h1>
+  <h1>Exercice 2</h1><br>
 
-  <h1>A few of the Game of Thrones characters</h1>
-  <form>
-    <label for="house">House</label>:
-    <select name="house" id="house">
-      <option value="" selected>Select a house</option>
-    </select>
-  </form>
-  <p>
-    <ul id="characters"></ul>
-  </p>
+  <h2>Information about a GitHub user</h2>
+
+  <input type="text" id="username" placeholder="GitHub username">
+  <button onclick="lookupUser()">Lookup</button>
+
+  <p id="profilePicture"></p>
+
+  <table id="userInfo">
+    <tr>
+      <th>Name</th>
+      <td id="name"></td>
+    </tr>
+    <tr>
+      <th>Blog</th>
+      <td id="blog"></td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td id="created"></td>
+    </tr>
+  </table>
 
   <script src="../js/Exercice2.js"></script>
-  <button onclick="window.location.href='../index.html'">Done</button>
+  <br><button onclick="window.location.href='../index.html'">Done</button>
 
 </body>
 </html>

@@ -17,3 +17,8 @@ th {
   background-color: lightgray;
   text-align: center;
 }
+
+#profilePicture img {
+  max-width: 150px;
+  height: auto;
+}
