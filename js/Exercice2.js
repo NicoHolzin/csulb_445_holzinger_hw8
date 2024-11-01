@@ -6,18 +6,32 @@ function lookupUser() {
     .then(response => response.json())
     .then(data => {
       const profilePicture = document.getElementById('profilePicture');
-      profilePicture.innerHTML = data.avatar_url 
-        ? `<img src="${data.avatar_url}" alt="Profile Picture">` 
-        : `<img src="default-profile.png" alt="No Picture Available">`;
 
-      document.getElementById('name').textContent = data.name || 'N/A';
-      document.getElementById('blog').innerHTML = data.blog 
-        ? `<a href="${data.blog}" target="_blank">${data.blog}</a>` 
-        : 'N/A';
-      document.getElementById('created').textContent = data.created_at || 'N/A';
+      if (data.avatar_url) {
+        profilePicture.innerHTML = `<img src="${data.avatar_url}" alt="Profile Picture">`;
+      } else {
+        profilePicture.innerHTML = `<img src="default-profile.png" alt="No Picture Available">`;
+      }
+
+      if (data.name) {
+        document.getElementById('name').textContent = data.name;
+      } else {
+        document.getElementById('name').textContent = 'N/A';
+      }
+
+      if (data.blog) {
+        document.getElementById('blog').innerHTML = `<a href="${data.blog}" target="_blank">${data.blog}</a>`;
+      } else {
+        document.getElementById('blog').textContent = 'N/A';
+      }
+
+      if (data.created_at) {
+        document.getElementById('created').textContent = data.created_at;
+      } else {
+        document.getElementById('created').textContent = 'N/A';
+      }
     })
     .catch(error => {
       console.error(error.message);
-      
     });
 }

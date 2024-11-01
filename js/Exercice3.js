@@ -1,53 +1,26 @@
-// Country list
-const countryList = [
-"Afghanistan",
-"Albania",
-"Algeria",
-"Andorra",
-"Angola",
-"Anguilla",
-"Antarctica",
-"Antigua-and-Barbuda",
-"Argentina",
-"Armenia",
-"Aruba",
-"Australia",
-"Autria",
-"Azerbaïjan"
-];
+const travelData = {
+  name: "Nicolas",
+  countries: [
+    { name: "USA", year: 2024 },
+    { name: "Belgium", year: 2024 },
+    { name: "Austria", year: 2023 }
+  ]
+};
 
-//Get the element
-const countryInput = document.getElementById("country");
-const suggestionsContainer = document.getElementById("suggestions");
-
-function Autocomplete() {
-  //get the value
-  const inputText = countryInput.value.toLowerCase();
-  
-  //clear all
-  suggestionsContainer.innerHTML = "";
-
-  //if input then select filtered countries sarting with input
-  if (inputText.length > 0) {
-    const filteredCountries = countryList.filter(country => 
-      country.toLowerCase().startsWith(inputText)
-    );
-    
-  //Display the suggestion of filtered countries
-    filteredCountries.forEach(country => {
-      const suggestionDiv = document.createElement("div");
-      suggestionDiv.textContent = country;
-      suggestionDiv.classList.add("suggestion");
-
-  // add an event listener
-      suggestionDiv.addEventListener("click", () => {
-        countryInput.value = country;
-        suggestionsContainer.innerHTML = "";
-      });
-
-      suggestionsContainer.appendChild(suggestionDiv);
-    });
-  }
-}
-
-countryInput.addEventListener("input", Autocomplete);
+// Send the data to the server
+fetch("https://thejsway-server.herokuapp.com/api/countries", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(travelData)
+})
+  .then(response => {
+    return response.text();
+  })
+  .then(text => {
+      console.log(text); 
+  })
+  .catch(error => {
+    console.error(error.message);
+  });
